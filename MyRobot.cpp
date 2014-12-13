@@ -11,9 +11,9 @@ class RobotDemo : public SimpleRobot
 	Jaguar indexer;  // The Jaguar that runs the indexer
 public:
 	RobotDemo():
-		myRobot(1, 2),	// These must be initialized in the same order
+		myRobot(1, 3),	// These must be initialized in the same order
 		stick(1),	   // As they are declared above.
-		shooter(3),   // We are using the Jaguaur labeled 3
+		shooter(2),   // We are using the Jaguaur labeled 3
 		indexer(4)   // We are using the Jaguar labeled 4
 	{
 		myRobot.SetExpiration(0.1);
@@ -26,7 +26,7 @@ public:
 	void OperatorControl()
 	{
 		bool wheelEnabledBehavior = false;
-		double wheelSpeed = 0.25;
+		double wheelSpeed = -0.5;
 		bool rightBumperPressed = false;
 		bool joysticksPressed = false;
 		bool reverseMode = false;
@@ -86,8 +86,8 @@ public:
 				if (!rightBumperPressed) 
 				{
 					wheelEnabledBehavior = !wheelEnabledBehavior;
-					wheelSpeed = 0.25;
-				    printf("Toggled Wheel\n");
+					wheelSpeed = -0.5;
+				    printf("Toggled Wheel %d\n", wheelEnabledBehavior);
 				}
 				rightBumperPressed = true;
 			} 
@@ -101,10 +101,10 @@ public:
 			{
 				if(!joysticksPressed)
 				{
-					wheelSpeed = wheelSpeed +0.25;
-					if (wheelSpeed > 1.0)
+					wheelSpeed = wheelSpeed -0.1;
+					if (wheelSpeed < -0.8)
 					{
-						wheelSpeed = 0.25;
+						wheelSpeed = -0.5;
 					}
 					printf ("current speed: %g\n", wheelSpeed);
 				}
@@ -128,6 +128,10 @@ public:
 			{
 				indexer.SetSpeed(1.0);
 				printf("Fully Automatic Fire");
+			} 
+			else 
+			{
+				indexer.SetSpeed(0.0);
 			}
 //			If the right trigger is pressed shoot at a constant speed 
 //			and print "Fully Automatic Fire" on the console 
