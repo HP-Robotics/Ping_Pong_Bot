@@ -38,29 +38,33 @@ public:
 		myRobot.SetSafetyEnabled(true);
 		while (IsOperatorControl() && IsEnabled()) 
 		{
-			//SLOW MODE LOGIC
-						if (stick.GetRawButton(3))
-						{
-							if(!wasSlowButtonPressed){
-								slowMode=!slowMode;
-							}
-							wasSlowButtonPressed = true;
-						}
-						else
-							wasSlowButtonPressed = false;
-						
-						//REVERSE MODE LOGIC
-						if (stick.GetRawButton(2))
-						{
-							if(!wasReverseButtonPressed){
-								reverseMode=!reverseMode;
-							}
-							wasReverseButtonPressed = true;
-						}
-						else
-							wasReverseButtonPressed = false;
-						
-			// tank drive input
+			//Slow Mode Logic
+			if (stick.GetRawButton(3))
+			{
+				if(!wasSlowButtonPressed)
+				{
+					slowMode=!slowMode;
+				}
+				wasSlowButtonPressed = true;
+			}
+			else
+			{
+			wasSlowButtonPressed = false;
+			}		
+			//Reverse Mode Logic
+			if (stick.GetRawButton(2))
+			{
+				if(!wasReverseButtonPressed)
+				{
+					reverseMode=!reverseMode;
+				}
+				wasReverseButtonPressed = true;
+			}
+			else
+			{
+			wasReverseButtonPressed = false;
+			}			
+			// Tank Drive Input
 			double leftStickSpeed, rightStickSpeed;
 			if(!reverseMode)
 			{
@@ -135,7 +139,7 @@ public:
 			}
 //			If the right trigger is pressed shoot at a constant speed 
 //			and print "Fully Automatic Fire" on the console 
-			Wait(0.005);                                               // Wait for a motor update time
+			Wait(0.005);  // Wait for a motor update time
 		}
 	}
 };
