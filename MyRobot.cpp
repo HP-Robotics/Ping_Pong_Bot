@@ -106,7 +106,7 @@ public:
 				if(!joysticksPressed)
 				{
 					wheelSpeed = wheelSpeed -0.1;
-					if (wheelSpeed < -0.8)
+					if (wheelSpeed < -1.0)
 					{
 						wheelSpeed = -0.5;
 					}
